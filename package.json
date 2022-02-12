@@ -1,0 +1,23 @@
+{
+  "name": "study-angular",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css": "node-sass stylesheets/index.scss stylesheets/main.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qudgus21/study-angular.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qudgus21/study-angular/issues"
+  },
+  "homepage": "https://github.com/qudgus21/study-angular#readme",
+  "dependencies": {
+    "node-sass": "^7.0.1"
+  }
+}
