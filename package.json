@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/qudgus21/study-angular#readme",
   "dependencies": {
+    "angular": "^1.5.8",
     "node-sass": "^7.0.1"
   }
 }
