@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.6.2/sass.worker.min.js"></script>
-    <script src="main.js"></script>
-    <script src="javascripts/controllers//test.js"></script>
+    <script type="module"src="main.mjs"></script>
     <link rel="stylesheet" href="./stylesheets/main.css">
     <link
     rel="icon"
@@ -15,7 +14,7 @@
     />
     <title>자소설닷컴</title>
 </head>
-<body ng-app="todo" ng-controller="MainController">
+<body ng-app="app" ng-controller="MainController">
     {{title}}
 </body>
 </html>
