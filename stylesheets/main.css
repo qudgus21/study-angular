@@ -122,3 +122,33 @@ table {
 *::before,
 *::after {
   box-sizing: border-box; }
+
+body {
+  margin: 10px 20px; }
+
+:root {
+  --orange: #ff6813;
+  --darkGrey: #5c5b5b;
+  --lightGrey: #b6b6b6;
+  --whiteGrey: #f2f2f2;
+  --borderGrey: #e6e6e6;
+  --fontGrey: #2d2d2d;
+  --endColor: #3f4b5d; }
+
+home-header {
+  display: flex;
+  gap: 1%;
+  justify-content: center;
+  align-items: center; }
+  @media screen and (max-width: 576px) {
+    home-header {
+      min-width: 250px; } }
+  home-header div {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--orange); }
+  home-header img {
+    width: 2rem;
+    height: 2rem;
+    filter: invert(64%) sepia(40%) saturate(0%) hue-rotate(126deg) brightness(92%) contrast(88%);
+    cursor: pointer; }
