@@ -8,10 +8,8 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     $scope.state = {
         leftArrowImg: 'images/leftArrow.svg',
         rightArrowImg: 'images/rightArrow.svg',
-        year: 2021,
-        month: 9,
-        // year: moment().year(),
-        // month: moment().month()+1,
+        year: moment().year(),
+        month: moment().month()+1,
         jobData: [],
         calendarData: [],
         isModalOpen: false,
