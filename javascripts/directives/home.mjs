@@ -15,14 +15,21 @@ angular.module('app').directive('calendar', function(){
     }
 })
 
-angular.module('app').directive('modal', function(){
+angular.module('app').directive('dayItem', function(){
     return {
-        templateUrl: 'views/components/common/modal.html',
+        templateUrl: 'views/components/home/dayItem.html',
     }
 })
+
 
 angular.module('app').directive('content', function(){
     return {
         templateUrl: 'views/components/home/content.html',
+    }
+})
+
+angular.module('app').directive('modal', function(){
+    return {
+        templateUrl: 'views/components/common/modal.html',
     }
 })
