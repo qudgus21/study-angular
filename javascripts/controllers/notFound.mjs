@@ -1,6 +1,6 @@
-// angular.module('app').controller('notCtrl', function($scope){
-    
-//     $scope.state = {
-//         notFoundImg: 'images/leftArrow.svg',
-//     }
-// });
+angular.module('app').controller('notCtrl', function($scope,$location){
+    $scope.state = {
+        notFoundImg: 'images/notFound.png',
+        path: $location.$$path,
+    }
+});

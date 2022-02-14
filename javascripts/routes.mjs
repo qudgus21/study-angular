@@ -8,7 +8,6 @@ angular.module('app').config(function ($routeProvider) {
         templateUrl: 'views/pages/home.html' 
     })
     .otherwise({ 
-        redirectTo: '/404',
         templateUrl: 'views/pages/notFound.html' 
     }); 
 });
