@@ -1,0 +1,95 @@
+home-calendar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .daybar{
+        margin-top: 0.5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--lightGrey);
+        color: white;
+        height: 3vh;
+        width: 90%;
+        font-size: 0.9rem;
+        @media screen and (max-width: 576px) {
+          display: none;
+        }
+        > li {
+          height: 100%;
+          &:not(:last-child) {
+            border-right: 1px solid white;
+          }
+          width: calc(100% / 7);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+    }
+
+    .day-wrapper{
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        border-width: 1px 0 0 1px;
+        border-style: solid;
+        border-color: var(--borderGrey);
+
+
+        .day{
+            width: calc(100% / 7);
+            min-height: 14vh;
+            text-align: center;
+            border-style: solid;
+            border-color: var(--borderGrey);
+            border-width: 0 1px 1px 0;
+            @media screen and (max-width: 576px) {
+              width: 100%;
+              min-width: 250px;
+            }
+            .day-header{
+                color: var(--darkGrey);
+                background-color: var(--whiteGrey);
+                padding: 0.5vh;
+            }
+            
+            .job-wrapper{
+                color: var(--fontGrey);
+                padding: 0.5vh;
+                text-align: left;
+
+                .job{
+                    display: flex;
+                    margin: 0.5vh 0;
+                    font-size: 1.5vh;
+                    align-items: center;
+                    cursor: pointer;
+                }
+
+                .status{
+                    font-size: 0.9vh;
+                    width: 1.5vh;
+                    height: 1.5vh;
+                    color: white;
+                    border-radius: 3px;
+                    font-weight: bold;
+                    margin-right: 0.3vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    &.S{
+                      background-color:var(--orange);
+                    }
+
+                    &.E{
+                      background-color:var(--endColor);
+                    }
+                }
+            }
+        }   
+    }
+}
