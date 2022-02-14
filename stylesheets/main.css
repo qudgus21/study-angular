@@ -135,31 +135,31 @@ body {
   --fontGrey: #2d2d2d;
   --endColor: #3f4b5d; }
 
-home-header {
+navigator {
   display: flex;
   gap: 1%;
   justify-content: center;
   align-items: center; }
   @media screen and (max-width: 576px) {
-    home-header {
+    navigator {
       min-width: 250px; } }
-  home-header div {
+  navigator div {
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--orange); }
-  home-header img {
+  navigator img {
     width: 2rem;
     height: 2rem;
     filter: invert(64%) sepia(40%) saturate(0%) hue-rotate(126deg) brightness(92%) contrast(88%);
     cursor: pointer; }
 
-home-calendar {
+calendar {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%; }
-  home-calendar .daybar {
+  calendar .daybar {
     margin-top: 0.5vh;
     display: flex;
     justify-content: center;
@@ -170,24 +170,24 @@ home-calendar {
     width: 90%;
     font-size: 0.9rem; }
     @media screen and (max-width: 576px) {
-      home-calendar .daybar {
+      calendar .daybar {
         display: none; } }
-    home-calendar .daybar > li {
+    calendar .daybar > li {
       height: 100%;
       width: calc(100% / 7);
       display: flex;
       justify-content: center;
       align-items: center; }
-      home-calendar .daybar > li:not(:last-child) {
+      calendar .daybar > li:not(:last-child) {
         border-right: 1px solid white; }
-  home-calendar .day-wrapper {
+  calendar .day-wrapper {
     width: 90%;
     display: flex;
     flex-wrap: wrap;
     border-width: 1px 0 0 1px;
     border-style: solid;
     border-color: var(--borderGrey); }
-    home-calendar .day-wrapper .day {
+    calendar .day-wrapper .day {
       width: calc(100% / 7);
       min-height: 14vh;
       text-align: center;
@@ -195,24 +195,24 @@ home-calendar {
       border-color: var(--borderGrey);
       border-width: 0 1px 1px 0; }
       @media screen and (max-width: 576px) {
-        home-calendar .day-wrapper .day {
+        calendar .day-wrapper .day {
           width: 100%;
           min-width: 250px; } }
-      home-calendar .day-wrapper .day .day-header {
+      calendar .day-wrapper .day .day-header {
         color: var(--darkGrey);
         background-color: var(--whiteGrey);
         padding: 0.5vh; }
-      home-calendar .day-wrapper .day .job-wrapper {
+      calendar .day-wrapper .day .job-wrapper {
         color: var(--fontGrey);
         padding: 0.5vh;
         text-align: left; }
-        home-calendar .day-wrapper .day .job-wrapper .job {
+        calendar .day-wrapper .day .job-wrapper .job {
           display: flex;
           margin: 0.5vh 0;
           font-size: 1.5vh;
           align-items: center;
           cursor: pointer; }
-        home-calendar .day-wrapper .day .job-wrapper .status {
+        calendar .day-wrapper .day .job-wrapper .status {
           font-size: 0.9vh;
           width: 1.5vh;
           height: 1.5vh;
@@ -223,12 +223,12 @@ home-calendar {
           display: flex;
           justify-content: center;
           align-items: center; }
-          home-calendar .day-wrapper .day .job-wrapper .status.S {
+          calendar .day-wrapper .day .job-wrapper .status.S {
             background-color: var(--orange); }
-          home-calendar .day-wrapper .day .job-wrapper .status.E {
+          calendar .day-wrapper .day .job-wrapper .status.E {
             background-color: var(--endColor); }
 
-home-modal .overlay {
+modal .overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -236,12 +236,12 @@ home-modal .overlay {
   right: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 999; }
-  home-modal .overlay.false {
+  modal .overlay.false {
     display: none; }
-  home-modal .overlay.true {
+  modal .overlay.true {
     display: block; }
 
-home-modal .wrapper {
+modal .wrapper {
   position: fixed;
   top: 0;
   right: 0;
@@ -250,11 +250,11 @@ home-modal .wrapper {
   z-index: 1000;
   overflow: auto;
   outline: 0; }
-  home-modal .wrapper.false {
+  modal .wrapper.false {
     display: none; }
-  home-modal .wrapper.true {
+  modal .wrapper.true {
     display: block; }
-  home-modal .wrapper .inner {
+  modal .wrapper .inner {
     position: relative;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
     background-color: #fff;
@@ -267,40 +267,40 @@ home-modal .wrapper {
     padding: 3vh 2vh;
     overflow-y: scroll;
     -ms-overflow-style: none; }
-    home-modal .wrapper .inner::-webkit-scrollbar {
+    modal .wrapper .inner::-webkit-scrollbar {
       display: none; }
     @media screen and (max-width: 576px) {
-      home-modal .wrapper .inner {
+      modal .wrapper .inner {
         width: 95vw;
         min-width: 250px; } }
     @media screen and (max-width: 720px) {
-      home-modal .wrapper .inner {
+      modal .wrapper .inner {
         width: 90vw; } }
 
-modal-content .head {
+content .head {
   display: flex;
   padding-bottom: 2vh;
   border-bottom: 1px solid var(--lightGrey); }
-  modal-content .head .logo {
+  content .head .logo {
     max-width: 8vw;
     margin-right: 2.7%; }
-  modal-content .head .info {
+  content .head .info {
     display: flex;
     flex-direction: column;
     justify-content: space-around; }
-    modal-content .head .info .name {
+    content .head .info .name {
       font-size: 1.3vw;
       margin-bottom: 2vh; }
-    modal-content .head .info .time-wrapper {
+    content .head .info .time-wrapper {
       display: flex;
       align-items: center; }
-      modal-content .head .info .time-wrapper .time {
+      content .head .info .time-wrapper .time {
         font-size: 1.1vw;
         margin-right: 0.5vw; }
-      modal-content .head .info .time-wrapper .diff {
+      content .head .info .time-wrapper .diff {
         font-size: 1.1vw;
         color: var(--orange); }
 
-modal-content .content {
+content .content {
   padding-top: 1.5vh;
   text-align: center; }

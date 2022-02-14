@@ -1,25 +1,28 @@
-//페이지를 구성하는 디렉티브(컴포넌트)
+/**
+ * home 페이지 디렉티브
+**/
 
-angular.module('app').directive('homeHeader', function(){
+angular.module('app').directive('navigator', function(){
     return {
-        templateUrl: '../../views/components/home/header.html',
+        restrict: 'E',//default,
+        templateUrl: 'views/components/home/navigator.html',
     }
 })
 
-angular.module('app').directive('homeCalendar', function(){
+angular.module('app').directive('calendar', function(){
     return {
-        templateUrl: '../../views/components/home/calendar.html',
+        templateUrl: 'views/components/home/calendar.html',
     }
 })
 
-angular.module('app').directive('homeModal', function(){
+angular.module('app').directive('modal', function(){
     return {
-        templateUrl: '../../views/components/home/modal.html',
+        templateUrl: 'views/components/common/modal.html',
     }
 })
 
-angular.module('app').directive('modalContent', function(){
+angular.module('app').directive('content', function(){
     return {
-        templateUrl: '../../views/components/home/modalContent.html',
+        templateUrl: 'views/components/home/content.html',
     }
 })

@@ -1,6 +1,8 @@
-//함수 분리 & moment js적용
+/**
+ * home 페이지 컨트롤러
+*/
 
-angular.module('app').controller('homeCtrl', function($scope, $http){
+angular.module('app').controller('homeCtrl', function($scope, modalService, apiService){
 
     //상태값
     $scope.state = {
@@ -8,28 +10,31 @@ angular.module('app').controller('homeCtrl', function($scope, $http){
         rightArrowImg: 'images/rightArrow.svg',
         year: 2021,
         month: 9,
-        // year: new Date().getFullYear(),
-        // month: new Date().getMonth() + 1,
+        // year: moment().year(),
+        // month: moment().month()+1,
         jobData: [],
         calendarData: [],
         isModalOpen: false,
         selectedJob: null,
+        test : moment('2019-12-10', 'YYYY-MM-DD')
     }
 
-    $scope.test = false;
-    $scope.testToggle = function(){
-    }
-    $scope.getMyCtrlScope = function() {
-        return $scope;   
-   }
-
-
-    //바로 실행
+    //바로 실행(api 호출, 상태겂 초기화 등 수행)
     $scope.loaded = function(){
         this.getJobData();
     }
 
-    //상태값 변경 험수
+    //채용공고 데이터 가져오기
+    $scope.getJobData = function(){
+        apiService.get().success(function(data){
+            $scope.updateState({
+                jobData : data
+            })
+            $scope.setCalendarDate();
+        })
+    }
+
+    //상태값 변경
     $scope.updateState = function(newState){
         this.state = {
             ...this.state,
@@ -37,105 +42,99 @@ angular.module('app').controller('homeCtrl', function($scope, $http){
         }   
     }
 
-    $scope.before = function(){
+    //상단 네비게이터 - 이전버튼 클릭
+    $scope.beforeMonth = function(){
         let {year, month} = this.state;
         year = month === 1 ? year - 1 : year;
         month = month === 1 ? 12 : month - 1;
         this.updateState({year,month})
-        this.setDatesAndJobs();
+        this.setCalendarDate();
     }
 
-    $scope.after = function(){
+    //상단 네비게이터 - 이후버튼 클릭
+    $scope.afterMonth = function(){
         let {year, month} = this.state;
         year =  month === 12 ? year + 1 : year;
         month =  month === 12 ? 1 : month + 1;
         this.updateState({year,month})
-        this.setDatesAndJobs();
+        this.setCalendarDate();
     }
 
+    //10이하 월 앞에 0 붙이기
     $scope.checkMonthLength = function(month){
         return month >= 10 ? month : `0${month}`
     }
 
-    $scope.getJobData = function(){
-        $http.get('https://frontend-assignments.s3.ap-northeast-2.amazonaws.com/job_postings.json') 
-        .then((response)=>{
-            this.updateState({
-                jobData : response.data,
-            })
-            this.setDatesAndJobs();
-        })
-    }
-
-    $scope.setDatesAndJobs = function(){
+    // 날짜 세팅
+    $scope.getDate = function(){
         const {year, month} = this.state;
         const viewYear = year;
         const viewMonth = month;
         const prevLast = new Date(viewYear, viewMonth - 1, 0);
         const thisLast = new Date(viewYear, viewMonth, 0);
-        const pldate = prevLast.getDate();
-        const plday = prevLast.getDay();
-        const tldate = thisLast.getDate();
-        const tlday = thisLast.getDay();
+        const prevLastDate = prevLast.getDate();
+        const prevLastDay = prevLast.getDay();
+        const thisLastDate = thisLast.getDate();
+        const thisLastDay = thisLast.getDay();
         const thisDates = [];
         const prevDates = [];
         const nextDates = [];
-        const days = Array(tldate + 1).keys();
-    
-        // 날짜 세팅
+        const days = Array(thisLastDate + 1).keys();
+
         while (true) {
-          const iteratorResult = days.next();
-          if (iteratorResult.done) break;
-          thisDates.push(iteratorResult.value.toString());
+            const iteratorResult = days.next();
+            if (iteratorResult.done) break;
+            thisDates.push(iteratorResult.value.toString());
         }
-        if (plday !== 6) {
-          for (let i = 0; i < plday + 1; i++) {
-            prevDates.unshift((pldate - i).toString());
-          }
+        if (prevLastDay !== 6) {
+            for (let i = 0; i < prevLastDay + 1; i++) {
+            prevDates.unshift((prevLastDate - i).toString());
+            }
         }
-        for (let i = 1; i < 7 - tlday; i++) {
-          nextDates.push(i.toString());
+        for (let i = 1; i < 7 - thisLastDay; i++) {
+        nextDates.push(i.toString());
         }
-    
-        // 채용정보 세팅
+
+        // 지난 월 최초 날짜에 월 표시
+        if (prevDates.length) {
+            prevDates[0] = month === 1 ? `12/${prevDates[0]}` : `${month - 1}/${prevDates[0]}`;
+        }
+        
+        // 다음 월 최초 날짜에 월 표시
+        if (nextDates.length) {
+            nextDates[0] = month === 12 ? `1/${nextDates[0]}` : `${month + 1}/${nextDates[0]}`;
+        }
+
+        const dates = prevDates.concat(thisDates.slice(1), nextDates);
+
+        return {
+            dates,
+            nextDates,
+            prevDates,
+            thisDates,
+        }
+    }
+
+    // 채용정보 세팅
+    $scope.getJobs = function(nextDates, prevDates, thisDates){
+        const {year, month} = this.state;
+
         const prevJobs = prevDates.map((day) =>
-          month === 1 ? this.mappingJobData(year - 1, 12, day) : this.mappingJobData(year, month - 1, day),
+        month === 1 ? this.mappingJobData(year - 1, 12, day) : this.mappingJobData(year, month - 1, day),
         );
     
         const thisJobs = thisDates.slice(1).map((day) => this.mappingJobData(year, month, day));
     
         const nextJobs = nextDates.map((day) =>
-          month === 12 ? this.mappingJobData(year + 1, 1, day) : this.mappingJobData(year, month + 1, day),
+        month === 12 ? this.mappingJobData(year + 1, 1, day) : this.mappingJobData(year, month + 1, day),
         );
-    
-        // 지난 월 최초 날짜에 월 표시
-        if (prevDates.length) {
-          prevDates[0] = month === 1 ? `12/${prevDates[0]}` : `${month - 1}/${prevDates[0]}`;
-        }
-    
-        // 다음 월 최초 날짜에 월 표시
-        if (nextDates.length) {
-          nextDates[0] = month === 12 ? `1/${nextDates[0]}` : `${month + 1}/${nextDates[0]}`;
-        }
-    
-        const dates = prevDates.concat(thisDates.slice(1), nextDates);
-        let jobs = prevJobs.concat(thisJobs, nextJobs);
-        jobs = this.sortJobs(jobs);
 
+        const jobs = this.sortJobs(prevJobs.concat(thisJobs, nextJobs));
 
-        const calendarData = dates.map(function(item, i) {
-            return {
-                date: item,
-                jobs: jobs[i]
-            };
-        });
-
-        this.updateState({
-            calendarData
-        })
+        return jobs
     }
-    
 
+    //날짜, 채용정보 연결
     $scope.mappingJobData = function(year, month, day){
         const {jobData} = this.state;
         const baseDate = new Date(`${year}-${month}-${day}`);
@@ -144,13 +143,11 @@ angular.module('app').controller('homeCtrl', function($scope, $http){
         jobData.forEach((job) => {
             const startDate = new Date(job.start_time);
             const endDate = new Date(job.end_time);
-          
-            //issame day moment js
-            if (this.isSameDay(baseDate, startDate)) {
+            if (moment(baseDate).isSame(startDate, 'day')) {
             jobs.push({ ...job, status: 'S' });
             }
     
-            if (this.isSameDay(baseDate, endDate)) {
+            if (moment(baseDate).isSame(endDate, 'day')) {
             jobs.push({ ...job, status: 'E' });
             }
         });
@@ -158,6 +155,7 @@ angular.module('app').controller('homeCtrl', function($scope, $http){
         return jobs;
     }
 
+    //채용정보 정렬
     $scope.sortJobs = function(jobs){
         jobs.map((job) => {
             job.sort((a, b) => {
@@ -170,54 +168,57 @@ angular.module('app').controller('homeCtrl', function($scope, $http){
         return jobs;
     }
 
-    $scope.isSameDay = function(d1, d2){
-        return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
-    }
+    //날짜, 채용정보 합쳐서 calendarData로 세팅
+    $scope.setCalendarDate = function(){
+        const {
+            dates,
+            nextDates,
+            prevDates,
+            thisDates,
+        } = this.getDate();
 
-    $scope.status = function(status){
-        return status === 'S' ? '시' : '끝'
-    }
+        const jobs = this.getJobs(nextDates, prevDates, thisDates);
 
-    $scope.handleJobClick = function(job){
+        const calendarData = dates.map(function(item, i) {
+            return {
+                date: item,
+                jobs: jobs[i]
+            };
+        });
 
         this.updateState({
+            calendarData
+        })
+    }    
+
+    //채용공고 클릭
+    $scope.handleJobClick = function(job){
+        modalService.modalOpen();
+        this.updateState({
             selectedJob : job,
-            isModalOpen: true
-        })    
-            
+            isModalOpen: modalService.isModalOpen
+        })
     }
 
-    //page
-    $scope.modalClose = function($event){
-
-        const $modal = document.querySelector('.inner');
-
-        if(!$modal.contains($event.target)){
-            this.updateState({
-                isModalOpen: false
-            })    
-        }
+    //페이지 클릭(모달 종료를 위해)
+    $scope.handlePageClick = function($event){
+        modalService.checkModalOutsideClick($event);
+        this.updateState({
+            isModalOpen: modalService.isModalOpen
+        })
     }
 
+    //날짜변환
     $scope.translateDate = function(date){
-        const base = new Date(date);
-        const year = base.getFullYear();
-        let month = base.getMonth() + 1;
-        let day = base.getDate();
-        let hour = base.getHours();
-        let min= base.getMinutes();
-        month = month >= 10 ? month : `0${month}`;
-        day = day >= 10 ? day : `0${day}`;
-        hour = hour >= 10 ? hour : `0${hour}`;
-        min = min >= 10 ? min : `0${min}`;
-        return `${year}.${month}.${day} ${hour}:${min}`;
+        return moment(date).format('YYYY.MM.DD HH.MM');
     }
 
+    //날짜차이
     $scope.calTimeDiff = function(date){
-        const diff = (new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24);
-        return Math.round(diff);
+        return moment(new Date()).diff(moment(date), 'days')
     }
 
+    //날짜차이
     $scope.getTimeDiff = function(date){
         const diff = this.calTimeDiff(date);
         if (diff > 0) {
