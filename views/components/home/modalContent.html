@@ -1,0 +1,11 @@
+<div class="head">
+    <img class="logo" alt="logo" ng-src="{{state.selectedJob.image}}"></img>
+    <div class="info">
+        <div class="name">{{state.selectedJob.name}}</div>
+        <div class="time-wrapper">
+            <div class="time">{{translateDate(state.selectedJob.start_time)}} ~ {{translateDate(state.selectedJob.end_time)}}</div>
+            <div class="diff">{{getTimeDiff(state.selectedJob.end_time)}}</div>
+        </div>
+    </div>
+</div>
+<div class="content" ng-bind-html="state.selectedJob.content"></div>
