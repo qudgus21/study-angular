@@ -14,10 +14,9 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
         calendarData: [],
         isModalOpen: false,
         selectedJob: null,
-        test : moment('2019-12-10', 'YYYY-MM-DD')
     }
 
-    //바로 실행(api 호출, 상태겂 초기화 등 수행)
+    //바로 실행(api 호출, 상태값 초기화 등 수행)
     $scope.loaded = function(){
         this.getJobData();
     }
