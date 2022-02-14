@@ -1,0 +1,43 @@
+modal-content{
+    .head{
+        display: flex;
+        padding-bottom: 2vh;
+        border-bottom: 1px solid var(--lightGrey);
+    
+        .logo{
+            max-width: 8vw;
+            margin-right: 2.7%;
+        }
+    
+        .info{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            .name{
+                font-size: 1.3vw;
+                margin-bottom: 2vh;
+            }
+    
+            .time-wrapper{
+                display: flex;
+                align-items: center;
+
+                .time{
+                    font-size: 1.1vw;
+                    margin-right: 0.5vw;
+                }
+    
+                .diff{
+                    font-size: 1.1vw;
+                    color: var(--orange);
+                }
+            }
+        }
+    }
+
+    .content{
+        padding-top: 1.5vh;
+        text-align: center;
+    }
+}
