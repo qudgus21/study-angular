@@ -4,4 +4,5 @@ angular.module('app').controller('notController', function($location){
         notFoundImg: 'images/notFound.png',
         path: $location.$$path,
     }
+    
 });
