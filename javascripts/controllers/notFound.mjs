@@ -1,5 +1,6 @@
-angular.module('app').controller('notCtrl', function($scope,$location){
-    $scope.state = {
+angular.module('app').controller('notController', function($location){
+    
+    this.state = {
         notFoundImg: 'images/notFound.png',
         path: $location.$$path,
     }

@@ -1,5 +1,5 @@
-<div class="home" ng-controller="homeCtrl">
+<div class="home" ng-controller="homeController as homeCtrl">
   <navigator></navigator>
   <calendar></calendar>
-  <modal ng-click="handlePageClick($event)"></modal>
+  <modal ng-click="homeCtrl.handlePageClick($event)"></modal>
 </div>

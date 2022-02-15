@@ -1,6 +1,6 @@
 <div class="day-header">{{item.date}}</div>
 <ul class="job-wrapper">
-    <li class="job" ng-repeat="job in item.jobs" ng-click="$parent.$parent.handleJobClick(job)">
+    <li class="job" ng-repeat="job in item.jobs" ng-click="homeCtrl.handleJobClick(job)">
         <div class="status {{job.status}}">{{job.status === "S" ? "시" : "끝"}}</div>
         <div>{{job.name}}</div>
     </li>

@@ -2,10 +2,10 @@
  * home 페이지 컨트롤러
 */
 
-angular.module('app').controller('homeCtrl', function($scope, modalService, apiService){
+angular.module('app').controller('homeController', function(modalService, apiService){
 
     //상태값
-    $scope.state = {
+    this.state = {
         leftArrowImg: 'images/leftArrow.svg',
         rightArrowImg: 'images/rightArrow.svg',
         year: moment().year(),
@@ -17,22 +17,23 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }
 
     //바로 실행(api 호출, 상태값 초기화 등 수행)
-    $scope.loaded = function(){
+    this.loaded = function(){
         this.getJobData();
     }
 
     //채용공고 데이터 가져오기
-    $scope.getJobData = function(){
+    this.getJobData = function(){
+        const scope = this;
         apiService.get().success(function(data){
-            $scope.updateState({
+            scope.updateState({
                 jobData : data
             })
-            $scope.setCalendarDate();
+            scope.setCalendarDate();
         })
     }
 
     //상태값 변경
-    $scope.updateState = function(newState){
+    this.updateState = function(newState){
         this.state = {
             ...this.state,
             ...newState
@@ -40,7 +41,7 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }
 
     //상단 네비게이터 - 이전버튼 클릭
-    $scope.beforeMonth = function(){
+    this.beforeMonth = function(){
         let {year, month} = this.state;
         year = month === 1 ? year - 1 : year;
         month = month === 1 ? 12 : month - 1;
@@ -49,7 +50,7 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }
 
     //상단 네비게이터 - 이후버튼 클릭
-    $scope.afterMonth = function(){
+    this.afterMonth = function(){
         let {year, month} = this.state;
         year =  month === 12 ? year + 1 : year;
         month =  month === 12 ? 1 : month + 1;
@@ -58,12 +59,12 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }
 
     //10이하 월 앞에 0 붙이기
-    $scope.checkMonthLength = function(month){
+    this.checkMonthLength = function(month){
         return month >= 10 ? month : `0${month}`
     }
 
     // 날짜 세팅
-    $scope.getDate = function(){
+    this.getDate = function(){
         const {year, month} = this.state;
         const viewYear = year;
         const viewMonth = month;
@@ -113,7 +114,7 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }
 
     // 채용정보 세팅
-    $scope.getJobs = function(nextDates, prevDates, thisDates){
+    this.getJobs = function(nextDates, prevDates, thisDates){
         const {year, month} = this.state;
 
         const prevJobs = prevDates.map((day) =>
@@ -132,7 +133,7 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }
 
     //날짜, 채용정보 연결
-    $scope.mappingJobData = function(year, month, day){
+    this.mappingJobData = function(year, month, day){
         const {jobData} = this.state;
         const baseDate = new Date(`${year}-${month}-${day}`);
         const jobs = [];
@@ -153,7 +154,7 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }
 
     //채용정보 정렬
-    $scope.sortJobs = function(jobs){
+    this.sortJobs = function(jobs){
         jobs.map((job) => {
             job.sort((a, b) => {
                 if (a.status === b.status) {
@@ -166,7 +167,7 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }
 
     //날짜, 채용정보 합쳐서 calendarData로 세팅
-    $scope.setCalendarDate = function(){
+    this.setCalendarDate = function(){
         const {
             dates,
             nextDates,
@@ -189,7 +190,7 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }    
 
     //채용공고 클릭
-    $scope.handleJobClick = function(job){
+    this.handleJobClick = function(job){
         modalService.modalOpen();
         this.updateState({
             selectedJob : job,
@@ -198,7 +199,7 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }
 
     //페이지 클릭(모달 종료를 위해)
-    $scope.handlePageClick = function($event){
+    this.handlePageClick = function($event){
         modalService.checkModalOutsideClick($event);
         this.updateState({
             isModalOpen: modalService.isModalOpen
@@ -206,17 +207,17 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
     }
 
     //날짜변환
-    $scope.translateDate = function(date){
+    this.translateDate = function(date){
         return moment(date).format('YYYY.MM.DD HH.MM');
     }
 
     //날짜차이
-    $scope.calTimeDiff = function(date){
+    this.calTimeDiff = function(date){
         return moment(new Date()).diff(moment(date), 'days')
     }
 
     //날짜차이
-    $scope.getTimeDiff = function(date){
+    this.getTimeDiff = function(date){
         const diff = this.calTimeDiff(date);
         if (diff > 0) {
           return `${diff}일 지남`;
@@ -227,5 +228,5 @@ angular.module('app').controller('homeCtrl', function($scope, modalService, apiS
         return `${diff}일 전`;
     }
 
-    $scope.loaded();
+    this.loaded();
 });
