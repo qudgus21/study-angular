@@ -11,6 +11,6 @@ angular.module('app').config(function ($routeProvider) {
     })
     .otherwise({ 
         templateUrl: 'views/pages/notFound.html',
-        controller: 'notController'
+        // controller: 'notController'
     }); 
 });

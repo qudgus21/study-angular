@@ -13,6 +13,7 @@ angular.module('app').factory('dateStorage',function($rootScope){
                 ...storage.state,
                 ...newState
             }
+            storage.notify();
         },
 
         //이전달로 변경
@@ -21,7 +22,6 @@ angular.module('app').factory('dateStorage',function($rootScope){
             year = month === 1 ? year - 1 : year;
             month = month === 1 ? 12 : month - 1;
             storage.updateState({year,month})
-            storage.notify();
         },
 
         //다음달로 변경
@@ -30,7 +30,6 @@ angular.module('app').factory('dateStorage',function($rootScope){
             year =  month === 12 ? year + 1 : year;
             month =  month === 12 ? 1 : month + 1;
             storage.updateState({year,month})
-            storage.notify();
         },
 
         //변경 알림

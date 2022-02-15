@@ -151,10 +151,6 @@ angular.module('app').controller('calendarController', function($scope, apiServi
         this.updateState(data);
         this.setCalendarDate();
     })
-    
-    $scope.$on('loaded', (e)=>{
-        console.log('gkgkgkgkgkgkgkgkgkgk')
-    })
 
 
     this.loaded();
