@@ -14,7 +14,7 @@ angular.module('app').controller('homeController', function($rootScope){
         }   
     }
 
-    //모달 열기
+    //모달에 알림
     this.notifyDataToModal = (job) => {
         $rootScope.$broadcast('modalContent', {
             ...job,

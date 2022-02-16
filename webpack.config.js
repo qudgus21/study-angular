@@ -3,6 +3,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+
+// webpack.config.js
+// const path = require('path')
+// module.exports = {
+//     entry : './main.mjs',
+//     output : {
+//         path : path.resolve(__dirname, 'dist'),
+//         filename : 'code.bundle.js'
+//     },
+//     module : {
+//         rules : [{test : /\.js$/, use: 'babel-loader'}],
+//     },
+//     optimization : {minimizer : []}
+// }
+
 module.exports = {
   entry: ["@babel/polyfill", "./main.mjs"],
   output: {
@@ -11,6 +26,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
       {
         test: /\.js$/,
         include: [path.resolve(__dirname, "src/js")],

@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/qudgus21/study-angular#readme",
   "dependencies": {
-    "angular": "^1.5.8",        
+    "@babel/cli": "^7.17.3",
+    "@babel/core": "^7.17.4",
+    "angular": "^1.5.8",
     "angular-route": "^1.8.2",
     "angular-sanitize": "^1.8.2",
     "angular-ui-router": "^1.0.30",
