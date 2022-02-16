@@ -144,7 +144,7 @@ angular.module('app').controller('calendarController', function($scope, apiServi
     //채용공고 클릭
     this.handleJobClick = (job) => {
         $scope.$parent.homeCtrl.notifyDataToModal(job);
-        $rootScope.$broadcast('modalOpen');
+        $rootScope.$broadcast('modal_open');
     }
 
     //날짜 변경 시 알림 수신

@@ -16,7 +16,7 @@ angular.module('app').controller('homeController', function($rootScope){
 
     //모달에 알림
     this.notifyDataToModal = (job) => {
-        $rootScope.$broadcast('modalContent', {
+        $rootScope.$broadcast('modal_content', {
             ...job,
             start_time: this.translateDate(job.start_time),
             end_time: this.translateDate(job.end_time), 

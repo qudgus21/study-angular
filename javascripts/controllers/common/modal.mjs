@@ -31,12 +31,12 @@ angular.module('app').controller('modalController', function($scope){
     }
     
     //이벤트 - 모달 열기
-    $scope.$on('modalOpen',(e,data)=>{
+    $scope.$on('modal_open',(e,data)=>{
         this.modalOpen();
     })
 
     //이벤트 - 모달 내부 데이터 설정
-    $scope.$on('modalContent', (e,data)=>{
+    $scope.$on('modal_content', (e,data)=>{
         this.updateState({data})
     })
 
