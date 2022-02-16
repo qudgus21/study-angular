@@ -1,4 +1,5 @@
 modal-content{
+
     .head{
         display: flex;
         padding-bottom: 2vh;
@@ -37,7 +38,11 @@ modal-content{
     }
 
     .content{
-        padding-top: 1.5vh;
         text-align: center;
+        padding-top: 1.5vh;
+
+        img{
+            width: 53vw !important;
+        }
     }
 }

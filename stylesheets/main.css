@@ -302,8 +302,10 @@ modal-content .head {
         color: var(--orange); }
 
 modal-content .content {
-  padding-top: 1.5vh;
-  text-align: center; }
+  text-align: center;
+  padding-top: 1.5vh; }
+  modal-content .content img {
+    width: 53vw !important; }
 
 .notfound {
   display: flex;
