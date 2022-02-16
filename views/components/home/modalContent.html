@@ -1,0 +1,11 @@
+<div class="head">
+    <img class="logo" alt="logo" ng-src="{{modalCtrl.state.data.image}}"></img>
+    <div class="info">
+        <div class="name">{{modalCtrl.state.data.name}}</div>
+        <div class="time-wrapper">
+            <div class="time">{{modalCtrl.state.data.start_time}} ~ {{modalCtrl.state.data.end_time}}</div>
+            <div class="diff">{{modalCtrl.state.data.diff}}</div>
+        </div>
+    </div>
+</div>
+<div class="content" ng-bind-html="modalCtrl.state.data.content"></div>

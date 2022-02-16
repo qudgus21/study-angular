@@ -1,13 +1,10 @@
 /**
- * 모달 담당
+ * home 페이지 메인 컨트롤러
 */
 
-angular.module('app').controller('homeController', function(modalService){
+angular.module('app').controller('homeController', function($rootScope){
 
-    this.state = {
-        selectedJob: null,
-        ...angular.copy(modalService.state)
-    }
+    this.state = {}
 
     //상태변경 함수
     this.updateState = (newState) => {
@@ -18,19 +15,12 @@ angular.module('app').controller('homeController', function(modalService){
     }
 
     //모달 열기
-    this.modalOpen = (job) => {
-        modalService.modalOpen();
-        this.updateState({
-            selectedJob : job,
-            isModalOpen: modalService.state.isModalOpen
-        })
-    }
-
-    //모달 닫기
-    this.handlePageClick = ($event) => {
-        modalService.checkModalOutsideClick($event);
-        this.updateState({
-            isModalOpen: modalService.state.isModalOpen
+    this.notifyDataToModal = (job) => {
+        $rootScope.$broadcast('modalContent', {
+            ...job,
+            start_time: this.translateDate(job.start_time),
+            end_time: this.translateDate(job.end_time), 
+            diff: this.getTimeDiff(job.end_time),
         })
     }
 
@@ -40,13 +30,8 @@ angular.module('app').controller('homeController', function(modalService){
     }
 
     //날짜차이
-    this.calTimeDiff = (date) => {
-        return moment(new Date()).diff(moment(date), 'days')
-    }
-
-    //날짜차이
     this.getTimeDiff = (date) => {
-        const diff = this.calTimeDiff(date);
+        const diff = moment(new Date()).diff(moment(date), 'days');
         if (diff > 0) {
             return `${diff}일 지남`;
         }
@@ -55,5 +40,4 @@ angular.module('app').controller('homeController', function(modalService){
         }
         return `${diff}일 전`;
     }
-    
 });

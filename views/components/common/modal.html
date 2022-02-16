@@ -1,6 +1,6 @@
-<div ng-class="{true: 'overlay true', false: 'overlay false'}[homeCtrl.state.isModalOpen]"></div>
-<div ng-class="{true: 'wrapper true', false: 'wrapper false'}[homeCtrl.state.isModalOpen]">
+<div ng-class="{true: 'overlay true', false: 'overlay false'}[modalCtrl.state.isModalOpen]"></div>
+<div ng-class="{true: 'wrapper true', false: 'wrapper false'}[modalCtrl.state.isModalOpen]">
     <div class="inner">
-            <content></content>
+            <modal-content></modal-content>
     </div>
 </div>

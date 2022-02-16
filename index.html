@@ -16,5 +16,6 @@
 </head>
 <body ng-app="app">
     <div ng-view></div>
+    <modal ng-controller="modalController as modalCtrl" ng-click="modalCtrl.checkModalOutsideClick($event)"></modal>
 </body>
-</html> 
+</html>

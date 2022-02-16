@@ -3,8 +3,10 @@ angular.module('app').factory('dateStorage',function($rootScope){
     const storage = {
 
         state : {
-            year: moment().year(),
-            month: moment().month()+1,
+            year: 2021,
+            month: 9,
+            // year: moment().year(),
+            // month: moment().month()+1,
         },
 
         //상태변경 함수

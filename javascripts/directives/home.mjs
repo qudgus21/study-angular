@@ -21,15 +21,10 @@ angular.module('app').directive('dayItem', function(){
     }
 })
 
-
-angular.module('app').directive('content', function(){
-    return {
-        templateUrl: 'views/components/home/content.html',
-    }
-})
-
 angular.module('app').directive('modal', function(){
     return {
         templateUrl: 'views/components/common/modal.html',
     }
 })
+
+

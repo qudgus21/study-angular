@@ -1,8 +1,8 @@
 /**
- * 달력 담당
+ * 달력 컨트롤러
 */
 
-angular.module('app').controller('calendarController', function($scope, apiService, dateStorage){
+angular.module('app').controller('calendarController', function($scope, apiService, dateStorage, $rootScope){
 
     this.state = {
         calendarData: [],
@@ -143,7 +143,8 @@ angular.module('app').controller('calendarController', function($scope, apiServi
 
     //채용공고 클릭
     this.handleJobClick = (job) => {
-        $scope.$parent.homeCtrl.modalOpen(job);
+        $scope.$parent.homeCtrl.notifyDataToModal(job);
+        $rootScope.$broadcast('modalOpen');
     }
 
     //날짜 변경 시 알림 수신
@@ -152,6 +153,6 @@ angular.module('app').controller('calendarController', function($scope, apiServi
         this.setCalendarDate();
     })
 
-
     this.loaded();
+    
 });

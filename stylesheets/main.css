@@ -277,31 +277,31 @@ modal .wrapper {
       modal .wrapper .inner {
         width: 90vw; } }
 
-content .head {
+modal-content .head {
   display: flex;
   padding-bottom: 2vh;
   border-bottom: 1px solid var(--lightGrey); }
-  content .head .logo {
+  modal-content .head .logo {
     max-width: 8vw;
     margin-right: 2.7%; }
-  content .head .info {
+  modal-content .head .info {
     display: flex;
     flex-direction: column;
     justify-content: space-around; }
-    content .head .info .name {
+    modal-content .head .info .name {
       font-size: 1.3vw;
       margin-bottom: 2vh; }
-    content .head .info .time-wrapper {
+    modal-content .head .info .time-wrapper {
       display: flex;
       align-items: center; }
-      content .head .info .time-wrapper .time {
+      modal-content .head .info .time-wrapper .time {
         font-size: 1.1vw;
         margin-right: 0.5vw; }
-      content .head .info .time-wrapper .diff {
+      modal-content .head .info .time-wrapper .diff {
         font-size: 1.1vw;
         color: var(--orange); }
 
-content .content {
+modal-content .content {
   padding-top: 1.5vh;
   text-align: center; }
 
