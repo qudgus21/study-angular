@@ -184,6 +184,14 @@ modal .wrapper {
       modal .wrapper .inner {
         width: 90vw; } }
 
+@font-face {
+  font-display: swap;
+  font-family: 'Kyobo';
+  src: url("../../fonts/KyoboHandwriting2019.woff2") format("woff2"), url("../../fonts/KyoboHandwriting2019.woff") format("woff"), url("../../fonts/KyoboHandwriting2019.otf") format("opentype"); }
+
+* {
+  font-family: 'Kyobo' !important; }
+
 navigator {
   display: flex;
   gap: 1%;
