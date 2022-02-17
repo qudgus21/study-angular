@@ -3,15 +3,15 @@
 */
 
 //common
-import './common/modal.mjs'
+import './common/modal.js'
 
 //home page
-import './home/main.mjs'
-import './home/navigator.mjs'
-import './home/calendar.mjs'
+import './home/main.js'
+import './home/navigator.js'
+import './home/calendar.js'
 
 //notFound page
-import './notFound/main.mjs';
+import './notFound/main.js';
 
 
 
