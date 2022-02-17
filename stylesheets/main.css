@@ -135,6 +135,55 @@ body {
   --fontGrey: #2d2d2d;
   --endColor: #3f4b5d; }
 
+modal .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999; }
+  modal .overlay.false {
+    display: none; }
+  modal .overlay.true {
+    display: block; }
+
+modal .wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: auto;
+  outline: 0; }
+  modal .wrapper.false {
+    display: none; }
+  modal .wrapper.true {
+    display: block; }
+  modal .wrapper .inner {
+    position: relative;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+    border-radius: 5px;
+    width: 58vw;
+    height: 90vh;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    padding: 3vh 2vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none; }
+    modal .wrapper .inner::-webkit-scrollbar {
+      display: none; }
+    @media screen and (max-width: 576px) {
+      modal .wrapper .inner {
+        width: 95vw;
+        min-width: 250px; } }
+    @media screen and (max-width: 720px) {
+      modal .wrapper .inner {
+        width: 90vw; } }
+
 navigator {
   display: flex;
   gap: 1%;
@@ -227,55 +276,6 @@ calendar {
             background-color: var(--orange); }
           calendar .day-wrapper .day .job-wrapper .status.E {
             background-color: var(--endColor); }
-
-modal .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 999; }
-  modal .overlay.false {
-    display: none; }
-  modal .overlay.true {
-    display: block; }
-
-modal .wrapper {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  overflow: auto;
-  outline: 0; }
-  modal .wrapper.false {
-    display: none; }
-  modal .wrapper.true {
-    display: block; }
-  modal .wrapper .inner {
-    position: relative;
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-    background-color: #fff;
-    border-radius: 5px;
-    width: 58vw;
-    height: 90vh;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0 auto;
-    padding: 3vh 2vh;
-    overflow-y: scroll;
-    -ms-overflow-style: none; }
-    modal .wrapper .inner::-webkit-scrollbar {
-      display: none; }
-    @media screen and (max-width: 576px) {
-      modal .wrapper .inner {
-        width: 95vw;
-        min-width: 250px; } }
-    @media screen and (max-width: 720px) {
-      modal .wrapper .inner {
-        width: 90vw; } }
 
 modal-content .head {
   display: flex;

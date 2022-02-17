@@ -2,6 +2,8 @@
  * 모달 컨트롤러
 */
 
+// import app from '../../app.mjs'
+
 angular.module('app').controller('modalController', function($scope){
 
     this.state = {
